@@ -1,11 +1,11 @@
-import logging
 import os
+import logging
 os.system("clear")
-from telegram.ext import Updater, MessageHandler, Filters, Handler
-from telegram import Bot
+from telegram.ext import Updater, MessageHandler, Filters
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                     level=logging.INFO)
+logging.basicConfig(
+format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+level=logging.INFO)
 
 
 
@@ -27,28 +27,30 @@ def get_single_song(bot, update):
     os.chdir(f'./.temp{message_id}{chat_id}')
 
     logging.log(logging.INFO, f'start downloading')
-    bot.send_message(chat_id=chat_id, text="Fetching...")
+
     os.system(f'spotdl {url}')
+
     logging.log(logging.INFO, 'sending to client')
 
     
-    try:
-        sent = 0 
-        bot.send_message(chat_id=chat_id, text="Sending to You...")
-        files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(".") for f in filenames if os.path.splitext(f)[1] == '.mp3']
-        for file in files:
-            bot.send_audio(chat_id=chat_id, audio=open(f'./{file}', 'rb'), timeout=1000)
-            sent += 1
-    except:
-        pass
+
+    sent = 0 
+    bot.send_message(chat_id=chat_id, text="Sending to You...")
+    files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(".") for f in filenames if os.path.splitext(f)[1] == '.mp3']
+    for file in files:
+        bot.send_audio(chat_id=chat_id, audio=open(f'./{file}', 'rb'), timeout=1000)
+        sent += 1
+
 
     os.chdir('./..')
     os.system(f'rm -rf .temp{message_id}{chat_id}')
 
+
     if sent == 0:
-       bot.send_message(chat_id=chat_id, text="It seems there was a problem in finding/sending the song.")
+       bot.send_message(chat_id=chat_id,
+       text="It seems there was a problem in finding/sending the song.")
     else:
-        logging.log(logging.INFO, 'sent')
+        pass
 
 
 

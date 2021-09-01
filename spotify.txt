@@ -1,0 +1,4 @@
+python-telegram-bot==12.3.0
+spotdl==3.7.2
+termcolor
+loguru

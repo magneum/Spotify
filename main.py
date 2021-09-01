@@ -11,7 +11,7 @@ def VOID_FEEDER(client, update):
     VOID_ID = update.effective_message.chat_id
     message_id = update.effective_message.message_id
     S = client.send_message(chat_id=VOID_ID,text="Sending")
-    url = """ + update.effective_message.text + """
+    url = "'" + update.effective_message.text + "'"
     os.system(f"mkdir -p .hypespoted{message_id}{VOID_ID}")
     os.chdir(f"./.hypespoted{message_id}{VOID_ID}")
     os.system(f"spotdl {url}")

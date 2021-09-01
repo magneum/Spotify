@@ -1,48 +1,15 @@
 import os
-import sys
 import time
 import logging
 os.system("pip install python-telegram-bot==12.3.0")
 os.system("pip install spotdl==3.7.2")
-os.system("pip install loguru")
 os.system("clear")
-
-
-from loguru import *
 import telegram.ext as tg
 from telegram.ext import MessageHandler, Filters
 
 
 
-class InterceptHandler(logging.Handler):
-    LEVELS_MAP = {
-        logging.CRITICAL:
-        "CRITICAL",
-        logging.ERROR:
-        "ERROR",
-        logging.WARNING:
-        "WARNING",
-        logging.INFO:
-        "INFO",
-        logging.DEBUG:
-        "DEBUG"        }
-    def _get_level(
-        self,
-        record):
-        return self.LEVELS_MAP.get(
-        record.levelno,
-        record.levelno)
-    def emit(self, record):
-        logger_opt = logger.opt(
-        depth=6,
-        exception=record.exc_info,
-        ansi=True,
-        lazy=True)
-        logger_opt.log(self._get_level(record),
-        record.getMessage())
-logging.basicConfig(handlers=[InterceptHandler()],
-level=logging.INFO)
-NT = logging.getLogger(__name__)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 
 
 
@@ -59,10 +26,6 @@ dispatcher = updater.dispatcher
 def get_single_song(bot, update):
     chat_id = update.effective_message.chat_id
     message_id = update.effective_message.message_id
-    username = update.message.chat.username
-
-
-    NT.info(f"start to query message {message_id} in chat:{chat_id} from {username}")
 
     url = "'" + update.effective_message.text + "'"
 
@@ -110,19 +73,16 @@ def get_single_song(bot, update):
         chat_id=chat_id,
         text="It seems there was a problem in finding/sending the song.")
     else:
-        NT.info("Sent Audio")
+        logging.info("Sent Audio")
 
             
 
         
-try:
-    handler = MessageHandler(
-    Filters.text,
-    get_single_song)
-    dispatcher.add_handler(
-    handler=handler)
-    updater.start_polling()
-    updater.idle()
-except Exception as e:
-    print(f"Error {e}")
-    sys.exit(1)
+
+handler = MessageHandler(
+Filters.text,
+get_single_song)
+dispatcher.add_handler(
+handler=handler)
+updater.start_polling()
+updater.idle()

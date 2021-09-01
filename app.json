@@ -1,0 +1,15 @@
+{
+    "logo": "https://telegra.ph/file/54fe876fca7be910f92ba.jpg",
+    "name": "一═デ HypeVoids_DB デ═一",
+    "repository": "https://github.com/HypeVoidSoul/Spotify.git",
+    "stack": "container",
+    "addons": [
+       {
+          "options": {
+             "version": "13"
+          },
+          "plan": "heroku-postgresql"
+       }
+    ],
+    "description": "KLAW_ROBOT_DATA"
+}

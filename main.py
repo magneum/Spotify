@@ -2,7 +2,7 @@ import json
 import logging
 import os
 os.system("pip install python-telegram-bot==12.3.0")
-os.system("pip install spotdl")
+os.system("pip install spotdl==3.7.2")
 os.system("clear")
 from telegram.ext import Updater, MessageHandler, Filters, Handler
 from telegram import Bot

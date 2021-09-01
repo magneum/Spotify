@@ -5,5 +5,8 @@
     "stack": "container",
     "repository": "https://github.com/HypeVoidSoul/Spotify.git",
     "website": "https://github.com/HypeVoidSoul/Spotify.git",
-    "buildpacks": {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"}
+    "buildpacks": [
+        {"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"},
+        {"url": "heroku/python"}
+    ],
   }

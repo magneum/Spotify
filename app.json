@@ -1,7 +1,7 @@
 {"name": "Spotify Downloader Bot",
 "description": "A telegram bot To Download Spotify Audios",
 "logo": "https://telegra.ph/file/6a3b1febade2313dd0dca.jpg",
-"stack": "heroku-20",
+"stack": "container",
 "repository": "https://github.com/HypeVoidSoul/Spotify.git",
 "website": "https://github.com/HypeVoidSoul/Spotify.git",
 "buildpacks": [{"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"},{"url": "heroku/python"}]}

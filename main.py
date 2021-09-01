@@ -1,4 +1,5 @@
 import os
+import shutil
 import logging
 from telegram.ext import Updater, MessageHandler, Filters
 logging.basicConfig(
@@ -25,6 +26,10 @@ def VOID_FEEDER(client, update):
     if DONE == 0:
        client.send_message(chat_id=VOID_ID,
        text="Error! Check link or report @HypeVoids")
+    else:
+        pass
+    if os.path.exists("hypespoted"):
+        shutil.rmtree("hypespoted")
     else:
         pass
 VOID_DONE = MessageHandler(Filters.text,VOID_FEEDER)
